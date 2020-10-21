@@ -21,7 +21,7 @@ message = quote(message)
 numbers = []
 f = open("numbers.txt", "r")
 for line in f.read().splitlines():
-	if line != "":
+	if line is not None and line != "":
 		numbers.append(line)
 f.close()
 print('\nWe found ' + str(len(numbers)) + ' numbers in the file')
