@@ -26,4 +26,4 @@ Whatsapp Bulk Messenger uses selenium to automate sending of messages via Whatsa
 
 ### Funding
 
-If you like this app, I'd appreciate it if you could make a donation via [Buy Me a Coffee](https://www.buymeacoffee.com/anirudhbagri) or [PayPal.Me](paypal.me/AnirudhBagri).
+If you like this app, I'd appreciate it if you could make a donation via [Buy Me a Coffee](https://www.buymeacoffee.com/anirudhbagri) or [PayPal.Me](https://paypal.me/AnirudhBagri?locale.x=en_GB).
