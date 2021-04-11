@@ -59,7 +59,7 @@ for idx, number in enumerate(numbers):
 		url = 'https://web.whatsapp.com/send?phone=' + number + '&text=' + message
 		driver.get(url)
 		try:
-			click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.CLASS_NAME , '_2Ujuu')))
+			click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.CLASS_NAME , '_1E0Oz')))
 		except (UnexpectedAlertPresentException, NoAlertPresentException) as e:
 			print("alert present")
 			Alert(driver).accept()
