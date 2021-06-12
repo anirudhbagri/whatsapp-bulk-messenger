@@ -65,7 +65,10 @@ for idx, number in enumerate(numbers):
 				try:
 					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.CLASS_NAME , '_1E0Oz')))
 				except Exception as e:
-					print(f"Failed to send message to: {number}, retry ({i+1}/3)")
+					print(f"Something went wrong..\n Failed to send message to: {number}, retry ({i+1}/3)")
+					print("Make sure your phone and computer is connected to the internet.")
+					print("If there is an alert, please dismiss it.")
+					input("Press enter to continue")
 				else:
 					sleep(1)
 					click_btn.click()
