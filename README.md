@@ -1,5 +1,4 @@
 # Whatsapp-Bulk-Messenger
-## [Not updated actively]
 
 Whatsapp Bulk Messenger automates sending of messages via Whatsapp Web. The tool can you used to send whatsapp message in bulk. Program usus a list of numbers and tries to send a prediefined message to each number in the list.
 
