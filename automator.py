@@ -50,7 +50,7 @@ delay = 30
 driver = webdriver.Chrome(ChromeDriverManager().install())
 print('Once your browser opens up sign in to web whatsapp')
 driver.get('https://web.whatsapp.com')
-input("Press ENTER after login into Whatsapp Web and your chats are visiable	.")
+input("Press ENTER after login into Whatsapp Web and your chats are visible.")
 for idx, number in enumerate(numbers):
 	number = number.strip()
 	if number == "":
@@ -68,7 +68,6 @@ for idx, number in enumerate(numbers):
 					print(f"Something went wrong..\n Failed to send message to: {number}, retry ({i+1}/3)")
 					print("Make sure your phone and computer is connected to the internet.")
 					print("If there is an alert, please dismiss it.")
-					input("Press enter to continue")
 				else:
 					sleep(1)
 					click_btn.click()
