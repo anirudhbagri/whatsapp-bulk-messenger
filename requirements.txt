@@ -1,3 +1,2 @@
 selenium
 webdriver-manager
-pywin32
