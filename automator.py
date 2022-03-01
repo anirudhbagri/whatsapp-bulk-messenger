@@ -1,19 +1,33 @@
 from selenium import webdriver
-from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException, UnexpectedAlertPresentException, NoAlertPresentException
 from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 from urllib.parse import quote
-from sys import platform
+import os
 
 options = Options()
-if platform == "win32":
-	options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+options.add_argument("--profile-directory=Default")
+options.add_argument("--user-data-dir=/var/tmp/chrome_user_data")
 
+os.system("")
+os.environ["WDM_LOG_LEVEL"] = "0"
+class style():
+    BLACK = '\033[30m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    MAGENTA = '\033[35m'
+    CYAN = '\033[36m'
+    WHITE = '\033[37m'
+    UNDERLINE = '\033[4m'
+    RESET = '\033[0m'
+
+print(style.BLUE)
 print("**********************************************************")
 print("**********************************************************")
 print("*****                                               ******")
@@ -23,39 +37,36 @@ print("*****           www.github.com/anirudhbagri         ******")
 print("*****                                               ******")
 print("**********************************************************")
 print("**********************************************************")
+print(style.RESET)
 
 f = open("message.txt", "r")
 message = f.read()
 f.close()
 
-print("##########################################################")
-print('This is your message\n\n')
-print(message)
-print("##########################################################")
+print(style.YELLOW + '\nThis is your message-')
+print(style.GREEN + message)
+print("\n" + style.RESET)
 message = quote(message)
 
 numbers = []
 f = open("numbers.txt", "r")
 for line in f.read().splitlines():
-	if line != "":
-		numbers.append(line)
+	if line.strip() != "":
+		numbers.append(line.strip())
 f.close()
 total_number=len(numbers)
-print("##########################################################")
-print('\nWe found ' + str(total_number) + ' numbers in the file')
-print("##########################################################")
-print()
+print(style.RED + 'We found ' + str(total_number) + ' numbers in the file' + style.RESET)
 delay = 30
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 print('Once your browser opens up sign in to web whatsapp')
 driver.get('https://web.whatsapp.com')
-input("Press ENTER after login into Whatsapp Web and your chats are visiable	.")
+input(style.MAGENTA + "AFTER logging into Whatsapp Web is complete and your chats are visible, press ENTER..." + style.RESET)
 for idx, number in enumerate(numbers):
 	number = number.strip()
 	if number == "":
 		continue
-	print('{}/{} => Sending message to {}.'.format((idx+1), total_number, number))
+	print(style.YELLOW + '{}/{} => Sending message to {}.'.format((idx+1), total_number, number) + style.RESET)
 	try:
 		url = 'https://web.whatsapp.com/send?phone=' + number + '&text=' + message
 		sent = False
@@ -65,15 +76,15 @@ for idx, number in enumerate(numbers):
 				try:
 					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.XPATH, "//button[@class='_4sWnG']")))
 				except Exception as e:
-					print(f"Something went wrong..\n Failed to send message to: {number}, retry ({i+1}/3)")
+					print(style.RED + f"\nFailed to send message to: {number}, retry ({i+1}/3)")
 					print("Make sure your phone and computer is connected to the internet.")
-					print("If there is an alert, please dismiss it.")
-					input("Press enter to continue")
+					print("If there is an alert, please dismiss it." + style.RESET)
 				else:
 					sleep(1)
 					click_btn.click()
 					sent=True
 					sleep(3)
-					print('Message sent to: ' + number)
+					print(style.GREEN + 'Message sent to: ' + number + style.RESET)
 	except Exception as e:
-		print('Failed to send message to ' + number + str(e))
+		print(style.RED + 'Failed to send message to ' + number + str(e) + style.RESET)
+driver.close()
