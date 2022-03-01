@@ -1,7 +1,6 @@
 # Whatsapp-Bulk-Messenger
 
-Whatsapp Bulk Messenger automates sending of messages via Whatsapp Web. The tool can you used to send whatsapp message in bulk. Program usus a list of numbers and tries to send a prediefined message to each number in the list.
-
+Whatsapp Bulk Messenger automates sending of messages via Whatsapp Web. The tool can you used to send whatsapp message in bulk. Program uses runs through a list of numbers provided in numsbers.txt and then tries to send a prediefined (but templated) message to each number in the list. It can also read other columns from the number csv to populate template specific words and then send out a personalized message to the number
 
 Note: The current program is limited to sending only TEXT message
 
@@ -9,13 +8,12 @@ Note: Another version of similar project is available which supports sending med
 
 # Requirements
 
-
-*  Python 3.x
-*  Chrome v79
+*  Python >= 3.6
+*  Chrome headless is installed by the program automatically
 
 # Setup
 
-1. Install python - v3.x
+1. Install python - >=v3.6
 2. Run `pip install -r requirements.txt`
 
 # Steps
