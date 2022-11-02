@@ -39,7 +39,7 @@ print("**********************************************************")
 print("**********************************************************")
 print(style.RESET)
 
-f = open("message.txt", "r")
+f = open("message.txt", "r", encoding="utf8")
 message = f.read()
 f.close()
 
