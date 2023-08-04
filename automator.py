@@ -16,16 +16,16 @@ options.add_argument("--user-data-dir=/var/tmp/chrome_user_data")
 os.system("")
 os.environ["WDM_LOG_LEVEL"] = "0"
 class style():
-    BLACK = '\033[30m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    MAGENTA = '\033[35m'
-    CYAN = '\033[36m'
-    WHITE = '\033[37m'
-    UNDERLINE = '\033[4m'
-    RESET = '\033[0m'
+	BLACK = '\033[30m'
+	RED = '\033[31m'
+	GREEN = '\033[32m'
+	YELLOW = '\033[33m'
+	BLUE = '\033[34m'
+	MAGENTA = '\033[35m'
+	CYAN = '\033[36m'
+	WHITE = '\033[37m'
+	UNDERLINE = '\033[4m'
+	RESET = '\033[0m'
 
 print(style.BLUE)
 print("**********************************************************")
@@ -48,14 +48,13 @@ print(style.GREEN + message)
 message = quote(message)
 
 files = []
-m_num = 0
+f_num = 0
 f = open("files.txt", "r")
 for media in f.read().splitlines():
-    if media.strip() != "":
-        files.append(media.strip().replace("\\", "/"))
-        m_num += 1
-print(style.YELLOW + 'Found ' + str(m_num) + ' File(s)')
-print("\n" + style.RESET)
+	if media.strip() != "":
+		files.append(media.strip().replace("\\", "/"))
+		f_num += 1
+print(style.YELLOW + 'Found ' + str(f_num) + ' File(s)' + style.RESET)
 
 numbers = []
 f = open("numbers.txt", "r")
@@ -81,10 +80,10 @@ for idx, number in enumerate(numbers):
 		sent = False
 		for i in range(3):
 			if not sent:
+				sleep(3)
 				driver.get(url)
 				try:
 					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='compose-btn-send']")))
-					attach_btn = driver.find_element(By.XPATH, "//span[@data-testid='clip']")
 				except Exception as e:
 					print(style.RED + f"\nFailed to send message to: {number}, retry ({i+1}/3)")
 					print("Make sure your phone and computer is connected to the internet.")
@@ -93,17 +92,24 @@ for idx, number in enumerate(numbers):
 					sleep(1)
 					click_btn.click()
 					sleep(0.5)
-					for file in files:
-						attach_btn.click()
-						sleep(1)
+
+					if f_num != 0:
 						try:
-							driver.find_element(By.XPATH, "//button[@aria-label='Photos & Videos']/input").send_keys(file)
-							sleep(0.5)
-							driver.find_element(By.XPATH, "//span[@data-testid='send']").click()
+							attach_btn = driver.find_element(By.XPATH, "//span[@data-testid='attach-menu-plus']")
+							for file in files:
+								attach_btn.click()
+								sleep(1)
+								try:
+									driver.find_element(By.XPATH, "//input[@accept='image/*,video/mp4,video/3gpp,video/quicktime']").send_keys(file)
+									sleep(0.5)
+									driver.find_element(By.XPATH, "//span[@data-icon='send']").click()
+								except:
+									print(style.RED + 'Failed to attach file ', file + style.RESET)
+									attach_btn.click()
+									sleep(1)
 						except:
-							print(style.RED + 'Failed to attach file ', file + style.RESET)
-							attach_btn.click()
-							sleep(1)
+							print(style.RED + 'Failed to attach file ' + style.RESET)
+
 					sent=True
 					sleep(3)
 					print(style.GREEN + 'Message sent to: ' + number + style.RESET)
