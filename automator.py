@@ -16,16 +16,16 @@ options.add_argument("--user-data-dir=/var/tmp/chrome_user_data")
 os.system("")
 os.environ["WDM_LOG_LEVEL"] = "0"
 class style():
-    BLACK = '\033[30m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    MAGENTA = '\033[35m'
-    CYAN = '\033[36m'
-    WHITE = '\033[37m'
-    UNDERLINE = '\033[4m'
-    RESET = '\033[0m'
+	BLACK = '\033[30m'
+	RED = '\033[31m'
+	GREEN = '\033[32m'
+	YELLOW = '\033[33m'
+	BLUE = '\033[34m'
+	MAGENTA = '\033[35m'
+	CYAN = '\033[36m'
+	WHITE = '\033[37m'
+	UNDERLINE = '\033[4m'
+	RESET = '\033[0m'
 
 print(style.BLUE)
 print("**********************************************************")
@@ -45,8 +45,16 @@ f.close()
 
 print(style.YELLOW + '\nThis is your message-')
 print(style.GREEN + message)
-print("\n" + style.RESET)
 message = quote(message)
+
+files = []
+f_num = 0
+f = open("files.txt", "r")
+for media in f.read().splitlines():
+	if media.strip() != "":
+		files.append(media.strip().replace("\\", "/"))
+		f_num += 1
+print(style.YELLOW + 'Found ' + str(f_num) + ' File(s)' + style.RESET)
 
 numbers = []
 f = open("numbers.txt", "r")
@@ -72,6 +80,7 @@ for idx, number in enumerate(numbers):
 		sent = False
 		for i in range(3):
 			if not sent:
+				sleep(3)
 				driver.get(url)
 				try:
 					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='compose-btn-send']")))
@@ -82,6 +91,25 @@ for idx, number in enumerate(numbers):
 				else:
 					sleep(1)
 					click_btn.click()
+					sleep(0.5)
+
+					if f_num != 0:
+						try:
+							attach_btn = driver.find_element(By.XPATH, "//span[@data-testid='attach-menu-plus']")
+							for file in files:
+								attach_btn.click()
+								sleep(1)
+								try:
+									driver.find_element(By.XPATH, "//input[@accept='image/*,video/mp4,video/3gpp,video/quicktime']").send_keys(file)
+									sleep(0.5)
+									driver.find_element(By.XPATH, "//span[@data-icon='send']").click()
+								except:
+									print(style.RED + 'Failed to attach file ', file + style.RESET)
+									attach_btn.click()
+									sleep(1)
+						except:
+							print(style.RED + 'Failed to attach file ' + style.RESET)
+
 					sent=True
 					sleep(3)
 					print(style.GREEN + 'Message sent to: ' + number + style.RESET)
