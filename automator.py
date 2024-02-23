@@ -74,7 +74,7 @@ for idx, number in enumerate(numbers):
 			if not sent:
 				driver.get(url)
 				try:
-					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='compose-btn-send']")))
+					click_btn = WebDriverWait(driver, delay).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
 				except Exception as e:
 					print(style.RED + f"\nFailed to send message to: {number}, retry ({i+1}/3)")
 					print("Make sure your phone and computer is connected to the internet.")
