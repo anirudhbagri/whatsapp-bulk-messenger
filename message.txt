@@ -3,3 +3,5 @@ Hello World,
 This is my text to you from automated messaging system.
 
 Thank You
+
+location=C:\Users\docto\Downloads\static_asset\image.png
