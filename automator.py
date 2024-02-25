@@ -8,13 +8,19 @@ from time import sleep
 from urllib.parse import quote
 import os
 
+# Configure selenium
 options = Options()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 options.add_argument("--profile-directory=Default")
 options.add_argument("--user-data-dir=/var/tmp/chrome_user_data")
 
+# Console clear
 os.system("")
+
+# Disable webdriver logs
 os.environ["WDM_LOG_LEVEL"] = "0"
+
+# Define colour styles for the console
 class style():
     BLACK = '\033[30m'
     RED = '\033[31m'
@@ -39,9 +45,8 @@ print("**********************************************************")
 print("**********************************************************")
 print(style.RESET)
 
-f = open("message.txt", "r", encoding="utf8")
-message = f.read()
-f.close()
+with open("message.txt", "r", encoding="utf8") as f:
+	message = f.read()
 
 print(style.YELLOW + '\nThis is your message-')
 print(style.GREEN + message)
@@ -49,11 +54,11 @@ print("\n" + style.RESET)
 message = quote(message)
 
 numbers = []
-f = open("numbers.txt", "r")
-for line in f.read().splitlines():
-	if line.strip() != "":
-		numbers.append(line.strip())
-f.close()
+with open("numbers.txt", "r") as f:
+	for line in f.read().splitlines():
+		if line.strip() != "":
+			numbers.append(line.strip())
+
 total_number=len(numbers)
 print(style.RED + 'We found ' + str(total_number) + ' numbers in the file' + style.RESET)
 delay = 30
@@ -87,4 +92,4 @@ for idx, number in enumerate(numbers):
 					print(style.GREEN + 'Message sent to: ' + number + style.RESET)
 	except Exception as e:
 		print(style.RED + 'Failed to send message to ' + number + str(e) + style.RESET)
-driver.close()
+driver.quit()
