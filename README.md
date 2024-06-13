@@ -8,12 +8,12 @@ Note: Another version of similar project is available which supports sending med
 
 # Requirements
 
-*  Python >= 3.6
+*  Python >= 3.7
 *  Chrome headless is installed by the program automatically
 
 # Setup
 
-1. Install python - >=v3.6
+1. Install python - >=v3.7
 2. Run `pip install -r requirements.txt`
 
 # Steps
