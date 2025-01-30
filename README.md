@@ -4,6 +4,8 @@ Whatsapp Bulk Messenger automates sending of messages via Whatsapp Web. The tool
 
 Note: The current program is limited to sending only TEXT message
 
+Note: This Code can send image.//Jaush 
+
 Note: Another version of similar project is available which supports sending media and documents along with text. As per many requests, I have added a [video here](https://youtu.be/NNkAh5sLEok) demonstrating how the app works. Please reach out to me on [email](mailto:bagrianirudh@gmail.com) for more enquiry. Join the [google group here](https://groups.google.com/g/whatsapp-bulker/) and [telegram group here](https://t.me/whatsapp_bulker).
 
 # Requirements
@@ -30,3 +32,6 @@ Note: Another version of similar project is available which supports sending med
 ### Funding
 
 If you like this app, I'd appreciate it if you could make a donation via [Buy Me a Coffee](https://www.buymeacoffee.com/anirudhbagri) or [PayPal.Me](https://paypal.me/AnirudhBagri?locale.x=en_GB).
+
+### Contributing
+Note: This Code can send image.//Jaush 
