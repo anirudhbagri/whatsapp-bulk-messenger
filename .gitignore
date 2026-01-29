@@ -1,1 +1,44 @@
-/venv
+# PyInstaller build and dist directories
+build/
+dist/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+node_modules/
+.wwebjs_cache/
+.wwebjs_auth/
+
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Project specific
+settings.json 
+number.txt
+messages.txt
+# Compiled files
+*.zip
+
+
+# Backup files
+Numaralar.csv
+

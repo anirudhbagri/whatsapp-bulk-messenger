@@ -1,0 +1,17 @@
+{
+  "name": "WhatsApp Toplu Mesaj",
+  "version": "1.0",
+  "description": "WhatsApp Web üzerinden toplu mesaj gönderme eklentisi",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ]
+  
+}

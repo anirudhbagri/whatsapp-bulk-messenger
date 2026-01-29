@@ -1,2 +1,9 @@
-selenium==3.141.0
-webdriver-manager==3.4.2
+PySide6
+selenium
+webdriver-manager
+urllib3
+requests
+pyinstaller
+pynsist
+Pillow
+webdriver_manager

@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>669</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WhatsApp Toplu Mesaj</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #181C14;
+}
+QTabWidget::pane {
+    border: 1px solid #D1D1D1;
+    background-color: #3C3D37;
+    border-radius: 8px;
+}
+QTabBar::tab {
+    background-color: #DCDCDC;
+    color: #666666;
+    padding: 8px 16px;
+    margin-right: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+QTabBar::tab:selected {
+    background-color: white;
+    color: #075E54;
+    font-weight: bold;
+}
+QTabBar::tab:hover:!selected {
+    background-color: #ECECEC;
+}
+QGroupBox {
+    background-color: #697565;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-weight: bold;
+    border: 1px solid #E0E0E0;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px 0 5px;
+    color: #ECDFCC;
+}
+QTextEdit, QListWidget {
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    background-color: white;
+    padding: 4px;
+}
+QProgressBar {
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    background-color: white;
+    text-align: center;
+    color: black;
+}
+QProgressBar::chunk {
+    background-color: #25D366;
+    border-radius: 4px;
+}
+QLabel {
+    color: #333333;
+	
+}
+QSpinBox {
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+
+#recipientsTab QPushButton, #mediaTab QPushButton{
+border:none;
+padding: 6px;
+border-radius:5px;
+color:rgb(232, 232, 232);
+
+}
+#addNumberBtn, #addMediaBtn{
+	background-color: rgb(0, 170, 0); 
+}
+#addNumberBtn:hover, #addMediaBtn:hover{
+background-color: rgb(0, 120, 0); 
+}
+
+#removeNumberBtn, #removeMediaBtn {
+	background-color:rgb(200, 0, 0) 
+}
+#removeNumberBtn:hover,  #removeMediaBtn:hover{
+background-color: rgb(170, 0, 0); 
+}
+
+#importNumbersBtn, #clearMediaBtn{
+	background-color: rgb(152, 152, 152); 
+}
+#importNumbersBtn:hover, #clearMediaBtn:hover{
+background-color:rgb(142, 165, 144); 
+}
+#startBtn {
+	background-color: rgb(0, 170, 0); 
+	color:white;
+	border: none;
+    border-radius: 4px;
+    padding: 4px;
+
+}
+#startBtn:hover {
+	background-color: rgb(0, 120, 0); 
+
+}
+
+#stopBtn {
+	background-color:rgba(195, 14, 4, 100); 
+	color:white;
+	border: none;
+    border-radius: 4px;
+    padding: 4px;
+}
+#stopBtn:enabled{
+background-color:rgba(200, 0, 0, 150);
+}
+#stopBtn:!enabled{
+	
+}
+#stopBtn:hover {
+	background-color: rgb(180, 0, 0);
+	 
+}
+
+
+
+
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="headerLayout">
+      <item>
+       <widget class="QLabel" name="logoLabel">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="titleLabel">
+        <property name="styleSheet">
+         <string notr="true">font-size: 18px; font-weight: bold; color: #075E54;</string>
+        </property>
+        <property name="text">
+         <string>WhatsApp Toplu Mesaj Gönderme</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::tab-bar { alignment: center; }</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="messageTab">
+       <attribute name="title">
+        <string>Mesaj Ayarları</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="messageLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="messageGroup">
+          <property name="title">
+           <string>Mesaj İçeriği</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="messageFormLayout" stretch="0,0">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="sizeConstraint">
+            <enum>QLayout::SetDefaultConstraint</enum>
+           </property>
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="messageLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color:#333333;</string>
+             </property>
+             <property name="text">
+              <string>Gönderilecek Mesaj:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="messageEdit">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="placeholderText">
+              <string>Buraya gönderilecek mesajı yazın...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="optionsGroup">
+          <property name="title">
+           <string>Gönderim Seçenekleri</string>
+          </property>
+          <layout class="QFormLayout" name="optionsFormLayout">
+           <property name="horizontalSpacing">
+            <number>10</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="delayLabel">
+             <property name="text">
+              <string>Mesajlar Arası Bekleme Süresi:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="delayLayout">
+             <item>
+              <widget class="QSpinBox" name="delaySpin">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="suffix">
+                <string> saniye</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>60</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="displayIntegerBase">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="waitLabel">
+               <property name="text">
+                <string>Elemenların Bulunması İçin Gereken Maks. Süre:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="waitSpin">
+               <property name="suffix">
+                <string> saniye</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="recipientsTab">
+       <attribute name="title">
+        <string>Alıcılar</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="recipientsLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="numbersGroup">
+          <property name="title">
+           <string>Telefon Numaraları</string>
+          </property>
+          <layout class="QVBoxLayout" name="numbersLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="infoLabel">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color:#333333;</string>
+             </property>
+             <property name="text">
+              <string>Telefon numaralarını ülke koduyla birlikte ekleyin (örn: 905551234567)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="numbersList">
+             <property name="styleSheet">
+              <string notr="true">QListWidget::item { padding: 6px; }
+QListWidget::item:alternate { background-color: #F7F7F7; }
+QListWidget{color: black;}</string>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="numbersButtonsLayout">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="addNumberBtn">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Numara Ekle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="removeNumberBtn">
+               <property name="text">
+                <string>Seçili Numarayı Sil</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="importNumbersBtn">
+               <property name="text">
+                <string>Numaraları İçe Aktar</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="mediaTab">
+       <attribute name="title">
+        <string>Medya Dosyaları</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="mediaLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="mediaGroup">
+          <property name="title">
+           <string>Eklenecek Medya Dosyaları</string>
+          </property>
+          <layout class="QVBoxLayout" name="mediaBoxLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="mediaInfoLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color:#333333;</string>
+             </property>
+             <property name="text">
+              <string>Göndermek istediğiniz resim, video veya diğer dosyaları ekleyin ve her biri için özel mesaj yazabilirsiniz</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="mediaContentLayout">
+             <item>
+              <widget class="QListWidget" name="mediaList">
+               <property name="styleSheet">
+                <string notr="true">QListWidget::item { padding: 6px; }
+QListWidget::item:alternate { background-color: #F7F7F7; }
+QListWidget{color:black;}</string>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="mediaMessageLayout">
+               <item>
+                <widget class="QLabel" name="mediaMessageLabel">
+                 <property name="styleSheet">
+                  <string notr="true">font-weight: bold; color:#333333;</string>
+                 </property>
+                 <property name="text">
+                  <string>Seçili Medya İçin Özel Mesaj:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="mediaMessageEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>120</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: black;</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Seçili medya dosyası için özel mesaj yazın...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="mediaMessageStatusLabel">
+                 <property name="styleSheet">
+                  <string notr="true">color: #075E54; font-style: italic;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="mediaButtonsLayout">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="addMediaBtn">
+               <property name="text">
+                <string>Dosya Ekle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="removeMediaBtn">
+               <property name="text">
+                <string>Seçili Dosyayı Kaldır</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clearMediaBtn">
+               <property name="text">
+                <string>Tüm Dosyaları Temizle</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="statusTab">
+       <attribute name="title">
+        <string>Durum</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="statusLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="statusGroup">
+          <property name="title">
+           <string>İşlem Durumu</string>
+          </property>
+          <layout class="QVBoxLayout" name="statusFormLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QTextEdit" name="statusText">
+             <property name="styleSheet">
+              <string notr="true">QTextEdit {
+    background-color: #F7F7F7;
+    font-family: 'Consolas', 'Courier New', monospace;
+    line-height: 1.4;
+	color:black;
+}</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="progressLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold;</string>
+             </property>
+             <property name="text">
+              <string>İlerleme:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="progressBar">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="statusButtonsLayout">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="startBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Gönderimi Başlat</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="stopBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Gönderimi Durdur</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="footerLayout">
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="footerLabel">
+        <property name="styleSheet">
+         <string notr="true">color: #666666; font-size: 10px;</string>
+        </property>
+        <property name="text">
+         <string>WhatsApp Toplu Mesaj Gönderme Uygulaması © 2025</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

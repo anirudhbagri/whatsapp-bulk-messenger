@@ -1,5 +1,0 @@
-Hello World,
-
-This is my text to you from automated messaging system.
-
-Thank You

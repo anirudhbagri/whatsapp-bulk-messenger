@@ -1,0 +1,29 @@
+{
+  "name": "whatsapp-bulk-messenger",
+  "version": "1.0.0",
+  "description": "Bu uygulama, WhatsApp Web üzerinden toplu mesaj göndermenizi sağlayan bir araçtır. Medya dosyaları ve özel mesajlar ekleyerek kişiselleştirilmiş mesajlar gönderebilirsiniz.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunusemretom/whatsapp-bulk-messenger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yunusemretom/whatsapp-bulk-messenger/issues"
+  },
+  "homepage": "https://github.com/yunusemretom/whatsapp-bulk-messenger#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#main"
+  }
+}

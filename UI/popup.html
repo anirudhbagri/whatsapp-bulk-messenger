@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Toplu Mesaj</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"></div>
+      <h1>WhatsApp Toplu Mesaj Gönderme</h1>
+    </header>
+
+    <div class="tabs">
+      <div class="tab-header">
+        <button class="tab-btn active" data-tab="message">Mesaj Ayarları</button>
+        <button class="tab-btn" data-tab="recipients">Alıcılar</button>
+        <button class="tab-btn" data-tab="media">Medya Dosyaları</button>
+        <button class="tab-btn" data-tab="status">Durum</button>
+      </div>
+
+      <div class="tab-content">
+        <!-- Mesaj Ayarları Tab -->
+        <div class="tab-pane active" id="message">
+          <div class="group-box">
+            <h2>Mesaj İçeriği</h2>
+            <label class="bold-label">Gönderilecek Mesaj:</label>
+            <textarea id="messageText" placeholder="Buraya gönderilecek mesajı yazın..."></textarea>
+          </div>
+
+          <div class="group-box">
+            <h2>Gönderim Seçenekleri</h2>
+            <div class="form-row">
+              <label>Mesajlar Arası Bekleme Süresi:</label>
+              <div class="inline-controls">
+                <input type="number" id="delayTime" min="1" max="60" value="3">
+                <span class="suffix">saniye</span>
+              </div>
+              
+              <label style="margin-left: 20px;">Delay Maks. Süre:</label>
+              <div class="inline-controls">
+                <input type="number" id="waitTime" min="1" value="3">
+                <span class="suffix">saniye</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alıcılar Tab -->
+        <div class="tab-pane" id="recipients">
+          <div class="group-box">
+            <h2>Telefon Numaraları</h2>
+            <label class="bold-label">Telefon numaralarını ülke koduyla birlikte ekleyin (örn: 905551234567)</label>
+            
+            <div class="numbers-list-container">
+              <ul id="numbersList" class="list-widget"></ul>
+            </div>
+            
+            <div class="button-row">
+              <button class="btn add-btn" id="addNumberBtn">Numara Ekle</button>
+              <button class="btn remove-btn" id="removeNumberBtn">Seçili Numarayı Sil</button>
+              <button class="btn import-btn" id="importNumbersBtn">Numaraları İçe Aktar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medya Dosyaları Tab -->
+        <div class="tab-pane" id="media">
+          <div class="group-box">
+            <h2>Eklenecek Medya Dosyaları</h2>
+            <label class="bold-label">Göndermek istediğiniz resim, video veya diğer dosyaları ekleyin ve her biri için özel mesaj yazabilirsiniz</label>
+            
+            <div class="media-container">
+              <ul id="mediaList" class="list-widget"></ul>
+              
+              <div class="media-message-section">
+                <label class="bold-label">Seçili Medya İçin Özel Mesaj:</label>
+                <textarea id="mediaMessageText" placeholder="Seçili medya dosyası için özel mesaj yazın..."></textarea>
+                <button class="btn primary-btn" id="saveMediaMessageBtn">Medya Mesajını Kaydet</button>
+                <div id="mediaMessageStatus"></div>
+              </div>
+            </div>
+            
+            <div class="button-row">
+              <button class="btn add-btn" id="addMediaBtn">Dosya Ekle</button>
+              <button class="btn remove-btn" id="removeMediaBtn">Seçili Dosyayı Kaldır</button>
+              <button class="btn import-btn" id="clearMediaBtn">Tüm Dosyaları Temizle</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Durum Tab -->
+        <div class="tab-pane" id="status">
+          <div class="group-box">
+            <h2>İşlem Durumu</h2>
+            <div id="statusText" class="status-log"></div>
+            
+            <label class="bold-label">İlerleme:</label>
+            <div class="progress-container">
+              <div id="progressBar" class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+              <span id="progressText">0%</span>
+            </div>
+            
+            <div class="button-row">
+              <button class="btn start-btn" id="startBtn">Gönderimi Başlat</button>
+              <button class="btn stop-btn" id="stopBtn" disabled>Gönderimi Durdur</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>WhatsApp Toplu Mesaj Gönderme Uygulaması © 2025</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+app: OtonomWhatsApp
+version: 1.0.0
+script:
+  - python3 -m pip install --upgrade pip
+  - pip3 install -r requirements.txt
+  - pip3 install pyinstaller
+  - pyinstaller --onefile --windowed --icon=assets/otonom-whatsapp.ico --name="OtonomWhatsApp" main2.py
+  - cp dist/OtonomWhatsApp usr/bin/
+  - cp assets/otonom-whatsapp.ico usr/share/icons/hicolor/256x256/apps/otonom-whatsapp.png
+  - cp LICENSE usr/share/doc/otonom-whatsapp/
+  - echo "[Desktop Entry]
+Name=Otonom WhatsApp
+Exec=OtonomWhatsApp
+Icon=otonom-whatsapp
+Type=Application
+Categories=Utility;
+Comment=WhatsApp Bulk Messenger
+Terminal=false" > usr/share/applications/otonom-whatsapp.desktop 

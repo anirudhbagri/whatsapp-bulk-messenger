@@ -1,0 +1,125 @@
+name: Cross-Platform PyInstaller Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # v1.0.0 gibi tag atıldığında çalışır
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v3
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Gerekli paketleri yükle
+        run: |
+          pip install pyinstaller
+          pip install PySide6 selenium webdriver_manager
+      - name: PyInstaller ile exe oluştur
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --icon=assets/resim.ico --name="OtonomWhatsApp" main.py
+      - name: EXE çıktısını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: OtonomWhatsApp-Windows
+          path: dist/OtonomWhatsApp.exe
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v3
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Gerekli paketleri yükle
+        run: |
+          pip install pyinstaller
+          pip install PySide6 selenium webdriver_manager
+      - name: PyInstaller ile linux binary oluştur
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --name="OtonomWhatsApp" main.py
+      - name: Linux çıktısını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: OtonomWhatsApp-Linux
+          path: dist/OtonomWhatsApp
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v3
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Gerekli paketleri yükle
+        run: |
+          pip install pyinstaller
+          pip install PySide6 selenium webdriver_manager
+      - name: PyInstaller ile macOS binary oluştur
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --name="OtonomWhatsApp" main.py
+      - name: macOS çıktısını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: OtonomWhatsApp-macOS
+          path: dist/OtonomWhatsApp
+
+  release:
+    needs: [build-windows, build-linux, build-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Artifact'leri indir
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Release oluştur
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+      - name: Windows binary'yi release'e yükle
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/OtonomWhatsApp-Windows/OtonomWhatsApp.exe
+          asset_name: OtonomWhatsApp-Windows.exe
+          asset_content_type: application/octet-stream
+      - name: Linux binary'yi release'e yükle
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/OtonomWhatsApp-Linux/OtonomWhatsApp
+          asset_name: OtonomWhatsApp-Linux
+          asset_content_type: application/octet-stream
+      - name: macOS binary'yi release'e yükle
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/OtonomWhatsApp-macOS/OtonomWhatsApp
+          asset_name: OtonomWhatsApp-macOS
+          asset_content_type: application/octet-stream

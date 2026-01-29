@@ -1,32 +1,113 @@
-# Whatsapp-Bulk-Messenger
+# Otonom WhatsApp Toplu Mesaj Gönderme Uygulaması
 
-Whatsapp Bulk Messenger automates sending of messages via Whatsapp Web. The tool can you used to send whatsapp message in bulk. Program uses runs through a list of numbers provided in numbers.txt and then tries to send a prediefined (but templated) message to each number in the list. It can also read other columns from the number csv to populate template specific words and then send out a personalized message to the number
+Bu uygulama, WhatsApp Web üzerinden toplu mesaj göndermenizi sağlayan bir araçtır. Medya dosyaları ve özel mesajlar ekleyerek kişiselleştirilmiş mesajlar gönderebilirsiniz.
 
-Note: The current program is limited to sending only TEXT message
 
-Note: Another version of similar project is available which supports sending media and documents along with text. As per many requests, I have added a [video here](https://youtu.be/NNkAh5sLEok) demonstrating how the app works. Please reach out to me on [email](mailto:bagrianirudh@gmail.com) for more enquiry. Join the [google group here](https://groups.google.com/g/whatsapp-bulker/) and [telegram group here](https://t.me/whatsapp_bulker).
+![Ana Ekran](https://github.com/yunusemretom/whatsapp-bulk-messenger/blob/primary/imgs/video.gif)
 
-# Requirements
+# Nasıl Kullanılır?
 
-*  Python >= 3.6
-*  Chrome headless is installed by the program automatically
+- Uygulamanın cihazınıza uygun sürümünü release kısmından indirin.
+- Numaraları ülke kodları ile birlikte(90, 03, 68 vb.) metin dosyasına(txt) ekleyin. Her numaradan sonra bir satır atlayarak ekleyin.
+- Uygulamayı çalıştırın. Uygulamayı imzalayamadığımız için büyük ihtimalle size çalıştırma tarzında bir uyarı çıkabilir. Bu uyarı "yine de çalıştır" deyip atlayabilirsiniz.
+- Son olarak metinlerinizi girin ve arkanıza yaslanın. 
+- *Dikkat edin eğer aynı numaradan birden fazla varsa aynı numaraya aynı mesaj birden fazla gidebilir.*
 
-# Setup
 
-1. Install python - >=v3.6
-2. Run `pip install -r requirements.txt`
+## 📦 Sürüm Bilgisi
 
-# Steps
+**v1.1.0** (2024-03-08)
 
-1. Enter the message you want to send inside `message.txt` file.
-2. Enter the list of numbers line-separated in `numbers.txt` file.
-3. Run `python automator.py`.
-4. Once the program starts, you'll see the message in message.txt and count of numbers in the numbers.txt file.
-5. After a while, Chrome should pop-up and open web.whatsapp.com.
-6. Scan the QR code to login into whatsapp.
-7. Press `Enter` to start sending out messages.
-8. Sit back and relax!
+### Değişiklikler
 
-### Funding
+- ✨ **Yeni Özellikler**
+  - Her medya için özel mesaj tanımlama
+  - Medya mesajlarını yıldız işareti ile görüntüleme
+  - Ayarları otomatik kaydetme (delay, wait değerleri)
+  - Geçersiz numara kontrolü iyileştirildi
 
-If you like this app, I'd appreciate it if you could make a donation via [Buy Me a Coffee](https://www.buymeacoffee.com/anirudhbagri) or [PayPal.Me](https://paypal.me/AnirudhBagri?locale.x=en_GB).
+- 🔧 **İyileştirmeler**
+  - Medya dosyaları ve ana mesaj ayrı ayrı gönderiliyor
+  - WhatsApp Web arayüz değişikliklerine karşı daha dayanıklı
+  - Daha hızlı geçersiz numara tespiti
+  - Numaralar artık settings.json dosyasına kaydedilmiyor
+
+- 🐛 **Hata Düzeltmeleri**
+  - Medya mesajları ve ana mesajın karışması sorunu çözüldü
+  - Medya yükleme sonrası input elementi değişikliği sorunu çözüldü
+  - Gereksiz bekleme süreleri optimize edildi
+
+## ⚠️ Sorumluluk Reddi
+
+Bu uygulama, WhatsApp'ın resmi bir uygulaması değildir ve WhatsApp tarafından desteklenmemektedir. Uygulamanın kullanımından doğabilecek her türlü sonuç kullanıcının sorumluluğundadır. Spam gönderimi, izinsiz mesaj gönderimi veya WhatsApp'ın kullanım şartlarına aykırı herhangi bir faaliyet için uygulama kullanılmamalıdır. Uygulamayı kullanarak, tüm yasal ve etik sorumlulukları kabul etmiş olursunuz.
+
+## Özellikler
+
+- 📱 Toplu WhatsApp mesajı gönderme
+- 📎 Medya dosyaları (resim, video, PDF) ekleme
+- 💬 Her medya için özel mesaj tanımlama
+- ⭐ Medya mesajlarını yıldız işareti ile görüntüleme
+- ⚙️ Ayarları otomatik kaydetme
+- 🔄 Geçersiz numara kontrolü
+- 📊 İlerleme durumu takibi
+
+## Kurulum
+
+1. Python 3.8 veya üstü sürümü yükleyin
+2. Gerekli kütüphaneleri yükleyin:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Uygulamayı başlatın:
+   ```
+   python main2.py
+   ```
+
+## Kullanım
+
+1. **Numara Ekleme**
+   - "Numara Ekle" butonu ile tek tek numara ekleyebilirsiniz
+   - "Numaraları İçe Aktar" ile txt dosyasından toplu numara ekleyebilirsiniz
+   - Numaraları ülke kodu ile birlikte girin (örn: 905551234567)
+
+2. **Medya Dosyaları**
+   - "Dosya Ekle" butonu ile medya dosyaları ekleyebilirsiniz
+   - Her medya için özel mesaj yazabilirsiniz
+   - Mesaj eklenen medyalar yıldız işareti (⭐) ile gösterilir
+   - Medya mesajları otomatik olarak kaydedilir
+
+3. **Mesaj Gönderme**
+   - Ana mesaj kutusuna göndermek istediğiniz mesajı yazın
+   - Delay ve Wait sürelerini ayarlayın
+   - "Gönderimi Başlat" butonuna tıklayın
+   - İşlem durumunu "Durum" sekmesinden takip edin
+
+## Ayarlar
+
+- **Delay**: Mesajlar arası bekleme süresi (saniye)
+- **Wait**: Elementlerin bulunması için gereken maksimum süre (saniye)
+- Ayarlar otomatik olarak kaydedilir ve uygulama yeniden başlatıldığında yüklenir
+
+## Güvenlik
+
+- Numaralar settings.json dosyasına kaydedilmez
+- Medya mesajları ve ayarlar yerel olarak saklanır
+- WhatsApp Web oturumu kapatıldığında tüm veriler silinir
+
+
+## Gereksinimler
+
+- Python 3.8+
+- PySide6
+- Selenium
+- Chrome WebDriver
+
+## Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+```
+
+Bu README dosyası, projenin özelliklerini, kurulum ve kullanım talimatlarını, örnek kodları içermekte ve okuyucuların kolayca anlayabilmesi için yapılandırılmıştır. İstediğin gibi düzenlemeler yapabilirsin.
+
+
+
